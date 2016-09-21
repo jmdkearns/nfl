@@ -19756,6 +19756,8 @@
 	
 	var React = __webpack_require__(1);
 	var DateSelect = __webpack_require__(160);
+	var GameSelect = __webpack_require__(161);
+	var Game = __webpack_require__(162);
 	
 	var NflBox = React.createClass({
 	  displayName: 'NflBox',
@@ -19858,7 +19860,8 @@
 	        'form',
 	        null,
 	        React.createElement(DateSelect, { setDate: this.setDate, ajaxRunner: this.ajaxRunner })
-	      )
+	      ),
+	      React.createElement(GameSelect, { games: this.state.games })
 	    );
 	  }
 	});
@@ -19906,6 +19909,75 @@
 	});
 	
 	module.exports = DateSelect;
+
+/***/ },
+/* 161 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	
+	var GameSelect = React.createClass({
+	  displayName: 'GameSelect',
+	
+	
+	  render: function render() {
+	    if (!this.props.games) {
+	      return React.createElement(
+	        'h4',
+	        null,
+	        'No Games To Show'
+	      );
+	    } else {
+	      return React.createElement(
+	        'ul',
+	        null,
+	        this.props.games.map(function (game, index) {
+	          return React.createElement(
+	            'li',
+	            null,
+	            React.createElement(
+	              'h3',
+	              { className: 'away-team', key: index },
+	              React.createElement('img', { src: "/images/" + game[Object.keys(game)[0]].away.abbr + ".png" }),
+	              ' ',
+	              game[Object.keys(game)[0]].away.abbr,
+	              ' ',
+	              game[Object.keys(game)[0]].away.score.T,
+	              ' @ ',
+	              game[Object.keys(game)[0]].home.score.T,
+	              ' ',
+	              game[Object.keys(game)[0]].home.abbr,
+	              ' ',
+	              React.createElement('img', { src: "/images/" + game[Object.keys(game)[0]].home.abbr + ".png" })
+	            )
+	          );
+	        })
+	      );
+	    }
+	  }
+	});
+	
+	module.exports = GameSelect;
+
+/***/ },
+/* 162 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	
+	var Game = function Game(props) {
+	  React.createElement(
+	    'div',
+	    { className: 'game' },
+	    React.createElement('div', { className: 'game-scorecard' })
+	  );
+	};
+	
+	module.exports = Game;
 
 /***/ }
 /******/ ]);

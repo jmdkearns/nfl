@@ -1,5 +1,7 @@
 var React = require('react')
 var DateSelect = require('./DateSelect')
+var GameSelect = require('./GameSelect')
+var Game = require('./Game')
 
 var NflBox = React.createClass({
 
@@ -70,9 +72,10 @@ var NflBox = React.createClass({
     return(
       <div>
         <h4>NFL Games</h4>
-      <form>
-        <DateSelect setDate={this.setDate} ajaxRunner={this.ajaxRunner}/>
-      </form>
+        <form>
+          <DateSelect setDate={this.setDate} ajaxRunner={this.ajaxRunner}/>
+        </form>
+        <GameSelect games={this.state.games}/>
       </div>
     )
   }
